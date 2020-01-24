@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Weather</title>
+    <link rel="icon" href="/img/weathericon.jpg">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+    <div class="main-content">
+        {{>header}}
+        <hr/>
+            <div>Weather Forcast for your address: {{address}}</div>
+            <div>Today Forecast Summary: {{Summary}}</div>
+            <div>Current Temperature: {{Temp}}</div>
+            <div>PrecipProbability: {{Precip}}</div>
+        <a href="https://darksky.net/forecast/40.7127,-74.0059/us12/en">Dark Sky Weather</a>
+    </div>
+</body>
+{{>footer}}
+
+
+</html>
