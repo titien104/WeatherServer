@@ -1,5 +1,5 @@
 const chalk = require('../node_modules/chalk')
-const request = require('../../WeatherApp/node_modules/request')
+const request = require('../node_modules/request')
 //get longtitude and latitude for provided address
 const geoCode = (address, callback) => {
   const gurl =
