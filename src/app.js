@@ -4,6 +4,7 @@ const express = require('../node_modules/express')
 const app = express()
 const Utils = require('../src/Utils')
 const validator = require('../node_modules/validator')
+const port = process.env.PORT || 3000 //hosting server will provide port or use default 3000
 //app.com
 //app.com/help
 //app.com/about
@@ -49,7 +50,10 @@ app.get('/about', (req, res) => {
 
 app.get('/weather', (req, res) => {
     if (!req.query.address) {
-        return res.send({error: 'No address provide'})
+        return res.send({
+            error: 'No address provide.',
+            help: 'Enter your address follow: /weather?address=your address'
+        })
     }      
     const address = req.query.address
     console.log(address)
@@ -67,7 +71,7 @@ app.get('/weather', (req, res) => {
             if (error) {
                 res.send({error: 'Can not find weather data'})
             }
-            res.send({
+            res.render('weather', {
                 title: 'Weather Page',
                 name: 'Thien Nguyen',
                 error: error,
@@ -114,6 +118,6 @@ app.get('*', (req, res) => {
 })
 
 
-app.listen(3000, () => {
-    console.log('Express Server is up at port 3000')
+app.listen(port, () => {
+    console.log('Express Server is up at port ' + port)
 })
