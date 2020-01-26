@@ -42,7 +42,7 @@ app.get('/help', (req, res) => {
 // })
 app.get('/about', (req, res) => {
     res.render('about', {
-        title: 'About Me',
+        title: 'Thien (Tim) Nguyen',
         timpic: "/img/Tim.jpg",
         name: 'Thien Nguyen'
     })
