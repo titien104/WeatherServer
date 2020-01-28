@@ -56,28 +56,29 @@ app.get('/weather', (req, res) => {
         })
     }      
     const address = req.query.address
-    console.log(address)
     if (validator.isIn(address, ['!', ' ', '.', '?', '%', '`', '"', '@', '#', '$', '&', '*', '+', '-'])){
         console.log("invalid address " + address)
         return res.send({error: 'Invalid address'})
     }
     Utils.geoCode(address, (error, data = {}) => {
         if (error) {
-            return res.send({error: 'Can not find address'})
+            res.send({error: 'Can not find address'})
         }
         const coordinate = data.lat + ',' + data.long
-        console.log(coordinate) //data is in
-         Utils.getWeather(coordinate, (error, weather) => {
+        Utils.getWeather(coordinate, (error, weather) => {
             if (error) {
-                res.send({error: 'Can not find weather data'})
+                return res.send({error: 'Can not find weather data'})
             }
-            res.render('weather', {
+            const summary = weather.daily.summary + 
+                ', Current Temperature: ' + weather.currently.temperature +
+                ', with ' + weather.currently.precipProbability *100 + '% of rain'
+            res.send({
                 title: 'Weather Page',
                 name: 'Thien Nguyen',
                 error: error,
                 address: address,
                 forecast: weather,
-                Summary: weather.daily.summary,
+                Summary: summary,
                 Temp: weather.currently.temperature,
                 Precip: weather.currently.precipProbability
             })

@@ -1,8 +1,7 @@
 console.log('Client is loading up')
-const fetch = require('node-fetch')
   
 fetch(
-  "http://localhost:3000/?address=wylie,%20tx"
+  "http://localhost:3000/weather?address=826%20Austin%20Lane,%20Lavon,%20Tx"
 ).then(response => {
   response.json().then(data => {
     if (data.error) {
