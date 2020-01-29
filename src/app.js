@@ -72,12 +72,15 @@ app.get('/weather', (req, res) => {
             const summary = weather.daily.summary + 
                 ', Current Temperature: ' + weather.currently.temperature +
                 ', with ' + weather.currently.precipProbability *100 + '% of rain'
+            const currently = weather.currently.summary +
+                ', Windspeed: ' + weather.currently.windSpeed +
+                ', with uvIndex: ' + weather.currently.uvIndex
             res.send({
                 title: 'Weather Page',
                 name: 'Thien Nguyen',
                 error: error,
                 address: address,
-                forecast: weather,
+                Currently: currently,
                 Summary: summary,
                 Temp: weather.currently.temperature,
                 Precip: weather.currently.precipProbability
